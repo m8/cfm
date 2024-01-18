@@ -40,7 +40,7 @@ def main():
     # Parse Command Line Arguments
     workload_choices = ['quicksort', 'linpack', 'tf-inception',
                         'tf-resnet', 'spark', 'kmeans', 'memaslap',
-                        'stream']
+                        'stream', 'linear']
 
     parser = argparse.ArgumentParser(description='Run a workload in a '
                                      'parameterized container')

@@ -412,6 +412,24 @@ class Stream(Workload):
         full_command = ' '.join((cd_dir, prefix, 'exec', set_cpu, shell_cmd))
         return full_command
 
+class Linear(Workload):
+    wname = "linear"
+    ideal_mem = 8250
+    min_ratio = 0.50
+    min_mem = int(min_ratio * ideal_mem)
+    binary_name = "linear"
+    cpu_req = 1
+    coeff = [-1984.129, 4548.033, -3588.554, 1048.644, 252.997]
+
+    def get_cmdline(self, procs_path, pinned_cpus):
+        prefix = "echo $$ > {} &&".format(procs_path)
+        arg = '8192'
+        shell_cmd = '/usr/bin/time -v' + ' ' + constants.WORK_DIR + '/linear/linear {}'.format(arg)
+        pinned_cpus_string = ','.join(map(str, pinned_cpus))
+        set_cpu = 'taskset -c {}'.format(pinned_cpus_string)
+        full_command = ' '.join((prefix, 'exec', set_cpu, shell_cmd))
+        return full_command
+
 def get_workload_class(wname):
     return {'quicksort': Quicksort,
             'linpack': Linpack,
@@ -420,4 +438,5 @@ def get_workload_class(wname):
             'spark': Spark,
             'kmeans': Kmeans,
             'memaslap': Memaslap,
-            'stream': Stream}[wname]
+            'stream': Stream,
+            'linear': Linear}[wname]
