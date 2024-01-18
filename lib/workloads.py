@@ -414,7 +414,7 @@ class Stream(Workload):
 
 class Linear(Workload):
     wname = "linear"
-    ideal_mem = 8250
+    ideal_mem = 2047
     min_ratio = 0.50
     min_mem = int(min_ratio * ideal_mem)
     binary_name = "linear"
@@ -432,7 +432,7 @@ class Linear(Workload):
 
 class Random(Workload):
     wname = "random"
-    ideal_mem = 8250
+    ideal_mem = 2047
     min_ratio = 0.50
     min_mem = int(min_ratio * ideal_mem)
     binary_name = "random"

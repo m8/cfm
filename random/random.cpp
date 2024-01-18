@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
     // Fill the vector with random integers
     std::srand(std::time(0));
     std::generate(v.begin(), v.end(), std::rand);
+    long volatile sum = 0;
 
     // Create a random access pattern
     std::vector<int> accessPattern(numInts);
